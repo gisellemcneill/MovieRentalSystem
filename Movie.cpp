@@ -164,7 +164,7 @@ int Movie::getStock() const {
 // Postconditions:
 // Stock is increased by 1
 // --------------------------------------------------------------------------------------------
-bool Movie::incrementStock() {
+void Movie::incrementStock() {
     stock++;
 }
 //End of incrementStock()
@@ -183,7 +183,7 @@ bool Movie::incrementStock() {
 // Returns false and leaves stock unchanged if stock <= 0
 // --------------------------------------------------------------------------------------------
 bool Movie::decrementStock() {
-    if (stock < 0) {
+    if (stock > 0) {
         stock--;
         return true;
     }

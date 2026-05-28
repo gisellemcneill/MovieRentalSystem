@@ -44,9 +44,10 @@ public:
     int getYear() const;
     char getGenre() const;
     char getType() const;
+    int getStock() const;
 
     //stock management
-    bool incrementStock(); //increase the stock
+    void incrementStock(); //increase the stock
     bool decrementStock(); //decrease the stock
 
     //pure virtual functions
