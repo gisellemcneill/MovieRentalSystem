@@ -52,8 +52,8 @@ ComedyMovie::ComedyMovie(string title, string director, int year, int stock)
 // --------------------------------------------------------------------------------------------
 void ComedyMovie::display(ostream& out) const {
 
-    out << genre << ", " << stock << ", " << director
-        << ", " << title << ", " << releaseYear << endl;
+    out << genre << ", " << stock << ", " << title
+        << ", " << releaseYear << endl;
 
 }
 // End of display()
