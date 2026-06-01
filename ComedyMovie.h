@@ -25,10 +25,11 @@
 #include "Movie.h"
 
 class ComedyMovie : public Movie {
+
     public:
 
     //constructor
-    ComedyMovie(string title, string director, int year, int stock);
+    ComedyMovie(const string& title, const string& director, int year, int stock);
 
     void display(ostream& out) const override;
     bool operator<(const Movie& other) const override;

@@ -1,4 +1,4 @@
-// ------------------------------------------------ ComedyMovie.cpp -------------------------------------------------------
+// ------------------------------------------------ ClassicMovie.cpp -------------------------------------------------------
 
 // Giselle McNeill, Nash Kumia CSS343 - 11AM T/TH with Wooyoung Kim
 
@@ -33,13 +33,46 @@
 // Postconditions:
 // ClassicMovie object is initialized and genre set to 'C'
 // --------------------------------------------------------------------------------------------
-ClassicMovie::ClassicMovie(string title, string director, string actor, int month, int year, int stock)
+ClassicMovie::ClassicMovie(const string& title, const string& director, int month, int year,
+        int stock, const string& actor)
     : Movie(title, director, year, 'C', stock) {
     releaseMonth = month;
     majorActor = actor;
 }
 // End of ClassicMovie()
 
+
+// ------------------------------------ getMajorActor() ------------------------------------
+// Description:
+// Returns the majorActor of the ClassicMovie
+//
+// Preconditions:
+// ClassicMovie object is initialized
+//
+// Postconditions:
+// Returns majorActor as a string, ClassicMovie object is unchanged
+// --------------------------------------------------------------------------------------------
+string ClassicMovie::getMajorActor() const {
+    return majorActor;
+}
+//End of getMajorActor()
+
+
+
+// ------------------------------------ getReleaseMonth() ------------------------------------
+// Description:
+// Returns the releaseMonth of the ClassicMovie
+//
+// Preconditions:
+// ClassicMovie object is initialized
+//
+// Postconditions:
+// Returns releaseMonth as an int, C;assocMovie object is unchanged
+// --------------------------------------------------------------------------------------------
+int ClassicMovie::getReleaseMonth() const {
+    return releaseMonth;
+}
+//End of getReleaseMonth()
 
 // ------------------------------------ display() ------------------------------------
 // Description:
@@ -55,8 +88,8 @@ ClassicMovie::ClassicMovie(string title, string director, string actor, int mont
 // --------------------------------------------------------------------------------------------
 void ClassicMovie::display(ostream& out) const {
 
-    out << genre << ", " << stock << ", " << releaseMonth
-        << " " << releaseYear << ", " << majorActor << endl;
+    out << genre << " " << type << " " << title << " "
+        << director << " " <<  releaseMonth << " " << releaseYear << " " << stock;
 
 }
 // End of display()

@@ -1,4 +1,4 @@
-// ------------------------------------------------ ComedyMovie.cpp -------------------------------------------------------
+// ------------------------------------------------ DramaMovie.cpp -------------------------------------------------------
 
 // Giselle McNeill, Nash Kumia CSS343 - 11AM T/TH with Wooyoung Kim
 
@@ -33,7 +33,7 @@
 // Postconditions:
 // DramaMovie object is initialized and genre set to 'D'
 // --------------------------------------------------------------------------------------------
-DramaMovie::DramaMovie(string title, string director, int year, int stock)
+DramaMovie::DramaMovie(const string& title, const string& director, int year, int stock)
     : Movie(title, director, year, 'D', stock) {}
 // End of DramaMovie()
 
@@ -52,8 +52,8 @@ DramaMovie::DramaMovie(string title, string director, int year, int stock)
 // --------------------------------------------------------------------------------------------
 void DramaMovie::display(ostream& out) const {
 
-    out << genre << ", " << stock << ", " << director
-        << ", " << title << endl;
+    out << genre << " " << type << " " << title << " "
+        << director << " " <<  releaseYear << " " << stock;
 
 }
 // End of display()

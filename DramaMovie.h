@@ -28,7 +28,7 @@ class DramaMovie : public Movie {
     public:
 
     //constructor
-    DramaMovie(string title, string director, int year, int stock);
+    DramaMovie(const string& title, const string& director, int year, int stock);
 
     void display(ostream& out) const override;
     bool operator<(const Movie& other) const override;
