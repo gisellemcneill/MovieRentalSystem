@@ -1,4 +1,4 @@
-// ------------------------------------------------ ComedyMovie.h -------------------------------------------------------
+// ------------------------------------------------ ClassicMovie.h -------------------------------------------------------
 
 // Giselle McNeill, Nash Kumia CSS343 - 11AM T/TH with Wooyoung Kim
 
@@ -23,16 +23,23 @@
 #define CLASSICMOVIE_H
 
 #include "Movie.h"
+using namespace std;
 
 class ClassicMovie : public Movie {
+
     public:
 
     //constructor
-    ClassicMovie(string title, string director, int year, int stock);
+    ClassicMovie(const string& title, const string& director, int month, int year,
+        int stock, const string& actor);
+
+    string getMajorActor() const;
+    int getReleaseMonth() const;
 
     void display(ostream& out) const override;
     bool operator<(const Movie& other) const override;
     bool operator==(const Movie& other) const override;
+
     private:
 
     string majorActor;

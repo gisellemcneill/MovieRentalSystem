@@ -30,7 +30,7 @@
 // Postconditions:
 // Movie object is initialized with provided values and type set to 'D'
 // --------------------------------------------------------------------------------------------
-Movie::Movie(string title, string director, int year, char genre, int stock) {
+Movie::Movie(const string& title, const string& director, int year, char genre, int stock) {
     this->title = title;
     this->director = director;
     this->releaseYear = year;

@@ -35,7 +35,7 @@ using namespace std;
 class Movie {
 public:
     //Constructor
-    Movie(string title, string director, int year, char genre, int stock);
+    Movie(const string& title, const string& director, int year, char genre, int stock);
     virtual ~Movie(); //virtual destructor
 
     //getters

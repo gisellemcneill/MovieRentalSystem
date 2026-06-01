@@ -33,7 +33,7 @@
 // Postconditions:
 // ComedyMovie object is initialized and genre set to 'F'
 // --------------------------------------------------------------------------------------------
-ComedyMovie::ComedyMovie(string title, string director, int year, int stock)
+ComedyMovie::ComedyMovie(const string& title, const string& director, int year, int stock)
     : Movie(title, director, year, 'F', stock) {}
 // End of ComedyMovie()
 
@@ -52,8 +52,8 @@ ComedyMovie::ComedyMovie(string title, string director, int year, int stock)
 // --------------------------------------------------------------------------------------------
 void ComedyMovie::display(ostream& out) const {
 
-    out << genre << ", " << stock << ", " << title
-        << ", " << releaseYear << endl;
+    out << genre << " " << type << " " << title << " "
+        << director << " " <<  releaseYear << " " << stock;
 
 }
 // End of display()
