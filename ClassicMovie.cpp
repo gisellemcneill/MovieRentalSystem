@@ -74,6 +74,29 @@ int ClassicMovie::getReleaseMonth() const {
 }
 //End of getReleaseMonth()
 
+
+// ------------------------------------ sameClassicMovie() ------------------------------------
+// Description:
+// Checks whether two ClassicMovie objects represent the same movie identity.
+// Movie identity is defined by title, director, release month, and release year.
+// Note: majorActor is NOT included because multiple actors can exist for the same movie.
+//
+// Preconditions:
+// Both ClassicMovie objects are valid and initialized.
+//
+// Postconditions:
+// Returns true if both movies represent the same underlying movie (ignoring actor).
+// Does NOT modify either object.
+// --------------------------------------------------------------------------------------
+bool ClassicMovie::sameClassicMovie(const ClassicMovie& other) const {
+    return title == other.title &&
+           director == other.director &&
+           releaseYear == other.releaseYear &&
+           releaseMonth == other.releaseMonth;
+}
+//End of sameClassicMovie()
+
+
 // ------------------------------------ display() ------------------------------------
 // Description:
 // Prints the ClassicMovie attributes to the output stream in the format:
@@ -98,7 +121,8 @@ void ClassicMovie::display(ostream& out) const {
 // ------------------------------------ operator< ------------------------------------
 // Description:
 // Compares two ClassicMovie objects for sorting
-// Sorts by releaseYear first, if years are equal, then compares by releaseMonth, if months are equal, then compares majorActor
+// Sorts by releaseYear first, if years are equal, then compares by releaseMonth,
+// if months are equal, then compare majorActor
 // Uses static_cast since genre is already known to be 'C'
 //
 // Preconditions:

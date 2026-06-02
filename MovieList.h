@@ -51,6 +51,7 @@ public:
     ClassicMovie* findClassic(int month, int year, const string& actor) const;
 
 
+    void displayClassic() const; //formatting for ClassicMovie
     void display() const; //display all movies in sorted order by genre
 
 private:
