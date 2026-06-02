@@ -4,7 +4,7 @@
 
 // Creation Date: 5/29/26
 
-// Date of Last Modification: 5/29/26
+// Date of Last Modification: 06/01/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@
 // movie rental store inventory system. ClassicMovie inherits from Movie and implements
 // the pure virtual functions declared in the Movie base class.
 
-// ClassicMovie objects are sorted and identified by title, then release year.
+// ClassicMovie objects are sorted and identified by release year, release month, then majorActor
 // The genre is hardcoded as 'C' for classic
 
 // The ClassicComparator struct is defined here and is used by std::set to maintain
@@ -36,6 +36,8 @@ class ClassicMovie : public Movie {
     string getMajorActor() const;
     int getReleaseMonth() const;
 
+    bool sameClassicMovie(const ClassicMovie& other) const;
+
     void display(ostream& out) const override;
     bool operator<(const Movie& other) const override;
     bool operator==(const Movie& other) const override;
@@ -49,7 +51,7 @@ class ClassicMovie : public Movie {
 // ------------------------------------ ClassicComparator ------------------------------------
 // Description:
 // Comparator struct used by std::set to sort ClassicMovie objects.
-// Sorts by title first, then by release year if titles are equal.
+// Sorts by release year, release month, then majorActor
 // --------------------------------------------------------------------------------------------
 struct ClassicComparator {
     bool operator()(const ClassicMovie* a, const ClassicMovie* b) const;

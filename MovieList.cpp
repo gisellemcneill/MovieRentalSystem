@@ -84,8 +84,10 @@ void MovieList::add(Movie* movie) {
             break;
         case 'D':
             dramas.insert(static_cast<DramaMovie*>(movie));
-        case'C'
+            break;
+        case'C':
             classics.insert(static_cast<ClassicMovie*>(movie));
+            break;
         default:
             cout << "ERROR: Genre " << movie -> getGenre() << " not recognized."
                 << "\nMovie was disregarded." << endl;
@@ -169,16 +171,90 @@ ClassicMovie* MovieList::findClassic(int month, int year, const string &actor) c
 //End of findClassic()
 
 
-// ------------------------------------ display() ------------------------------------
+// ------------------------------------ displayClassic() ------------------------------------
 // Description:
-// Displays all movies in sorted order by genre.
-// Prints Comedy movies first, Drama movies second, Classic movies third.
-// Within each genre, movies are printed in their comparator-defined sorted order.
+// Displays all ClassicMovie objects grouped by movie identity.
+// Movies are grouped by title, director, release month, and release year.
+//
+// Within each group, each actor version is printed on a separate line,
+// along with its individual stock value.
+//
+// Assumes ClassicMovies are already stored in sorted order based on:
+// release year, release month, and major actor.
 //
 // Preconditions:
-// None
+// classics set contains valid ClassicMovie pointers.
 //
 // Postconditions:
-// All movies printed sorted order by genre
-// MovieList is unchanged
+// All classic movies are printed in grouped format.
+// MovieList and ClassicMovie objects remain unchanged.
+// --------------------------------------------------------------------------------------
+void MovieList::displayClassic() const {
+
+    const ClassicMovie* currentGroup = nullptr;
+
+    for (ClassicMovie* m : classics) {
+
+        // NEW GROUP CHECK
+        if (currentGroup == nullptr || !m -> sameClassicMovie(*currentGroup)) {
+
+            cout << "\nC D "
+                 << m->getTitle() << " "
+                 << m->getDirector() << " "
+                 << m->getReleaseMonth() << " "
+                 << m->getYear() << " "
+                 << m->getStock() << endl;
+
+            currentGroup = m;
+        }
+
+        // always print actor
+        cout << m->getMajorActor()
+             << " --------------- "
+             << m->getStock() << endl;
+    }
+}
+//End of displayClassic()
+
+
+// ------------------------------------ display() ------------------------------------
+// Description:
+// Displays the entire movie inventory grouped by genre in the following order:
+// Comedies (F), Dramas (D), and Classics (C).
+
+// Within each genre, movies are printed in sorted order according to their
+// respective comparator rules.
+
+// For Classics, movies are further grouped by their full identity
+// (title, director, release month, and release year), and each group prints
+// its associated actors on separate lines.
+// Will call on function displayClassic()
+
+// Preconditions:
+// MovieList contains valid Movie objects in its genre sets.
+
+// Postconditions:
+// All movies are printed to the output stream.
+// MovieList remains unchanged.
 // --------------------------------------------------------------------------------------------
+void MovieList::display() const {
+
+    cout << "\n-------------------- COMEDIES --------------------\n\n";
+    for (ComedyMovie* m : comedies) {
+        m->display(cout);
+        cout << endl;
+    }
+
+    cout << "\n-------------------- DRAMAS ----------------------\n\n";
+    for (DramaMovie* m : dramas) {
+        m->display(cout);
+        cout << endl;
+    }
+
+    cout << "\n-------------------- CLASSICS --------------------\n";
+
+    displayClassic();
+
+    cout << "\n---------------------------------------------------\n";
+}
+//End of display()
