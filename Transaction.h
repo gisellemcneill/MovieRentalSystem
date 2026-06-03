@@ -37,7 +37,10 @@ class Transaction {
 public:
     //constructor
     Transaction(char type, Movie* movie, int customerID);
+    Transaction(const Transaction& other);
     virtual ~Transaction(); //virtual destructor
+
+    virtual Transaction* clone() const = 0; //virtual clone function
 
     //getters
     char getType() const;
