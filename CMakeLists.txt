@@ -52,3 +52,15 @@ add_executable(MovieListTests
 )
 
 target_include_directories(MovieListTests PRIVATE ${CMAKE_SOURCE_DIR})
+
+# Inventory Tests
+add_executable(InventoryTests
+        Tests/InventoryTests.cpp
+        Movie.cpp
+        ComedyMovie.cpp
+        DramaMovie.cpp
+        ClassicMovie.cpp
+        MovieList.cpp
+        Inventory.cpp)
+
+target_include_directories(InventoryTests PRIVATE ${CMAKE_SOURCE_DIR})
