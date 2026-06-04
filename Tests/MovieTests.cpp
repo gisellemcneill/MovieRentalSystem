@@ -1,6 +1,24 @@
-//
-// Created by Giselle McNeill on 5/31/26.
-//
+// ------------------------------------------------ MovieTests.cpp -------------------------------------------------------
+
+// Giselle McNeill, Nash Kumia CSS343 - 11AM T/TH with Wooyoung Kim
+
+// Creation Date: 5/27/26
+
+// Date of Last Modification: 6/1/26
+
+// --------------------------------------------------------------------------------------------------------------------
+
+// Purpose:
+// Tests the Movie class hierarchy including ComedyMovie, DramaMovie, and ClassicMovie.
+// Tests cover correct object creation, display formatting, sorting behavior,
+// comparison operators, and stock management for each movie genre.
+
+// Test cases include:
+// Simple tests — creating and displaying each movie type
+// Hard tests — sorting multiple movies, comparing movies
+// Edge cases — zero stock, invalid operations
+// --------------------------------------------------------------------------------------------------------------------
+
 #include <iostream>
 #include "ComedyMovie.h"
 #include "DramaMovie.h"
