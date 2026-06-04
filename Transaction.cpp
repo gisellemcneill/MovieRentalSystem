@@ -34,8 +34,28 @@
 Transaction::Transaction(char type, Movie *movie, int customerID) {
 
     this->type = type;
-    this->movie = movie;
+    this->movie = new Movie(*other.movie);
     this->customerID = customerID;
+
+}
+// End of Transaction()
+
+
+// ------------------------------------ Transaction Copy Constructor ------------------------------------
+// Description:
+// Initializes a Transaction object with the given type, movie pointer, and customer ID.
+//
+// Preconditions:
+// movie pointer is valid and not nullptr
+//
+// Postconditions:
+// Transaction object is initialized with provided values
+// --------------------------------------------------------------------------------------------
+Transaction::Transaction(const Transaction& other) {
+
+    this->type = other.type;
+    this->movie = new Movie(*other.movie);
+    this->customerID = other.customerID;
 
 }
 // End of Transaction()
@@ -52,7 +72,9 @@ Transaction::Transaction(char type, Movie *movie, int customerID) {
 // Postconditions:
 //The derived class destructor is called before the base class destructor
 // --------------------------------------------------------------------------------------------
-Transaction::~Transaction() {}
+Transaction::~Transaction() {
+    delete movie;
+}
 //End of ~Transaction()
 
 
@@ -129,3 +151,26 @@ ostream& operator<<(ostream& out, const Transaction& t) {
 
 }
 //End of operator<<()
+
+
+// ------------------------------------ Transaction Assignment Operator ------------------------------------
+// Description:
+// Initializes a Transaction object with the given type, movie pointer, and customer ID.
+//
+// Preconditions:
+// movie pointer is valid and not nullptr
+//
+// Postconditions:
+// Transaction object is initialized with provided values
+// --------------------------------------------------------------------------------------------
+Transaction& Transaction::Transaction(const Transaction& other) {
+    if (this == &other) { return *this; }
+    delete movie;
+
+    this->type = other.type;
+    this->movie = new Movie(*other.movie);
+    this->customerID = other.customerID;
+
+    return *this;
+}
+// End of Transaction()
