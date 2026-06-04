@@ -192,18 +192,28 @@ ClassicMovie* MovieList::findClassic(int month, int year, const string &actor) c
 void MovieList::displayClassic() const {
 
     const ClassicMovie* currentGroup = nullptr;
+    int totalStock = 0;
 
     for (ClassicMovie* m : classics) {
 
         // NEW GROUP CHECK
         if (currentGroup == nullptr || !m -> sameClassicMovie(*currentGroup)) {
 
+            // calculate total stock for this new group
+            totalStock = 0;
+            for (ClassicMovie* inner : classics) {
+                if (m->sameClassicMovie(*inner)) {
+                    totalStock += inner->getStock();
+                }
+            }
+
+
             cout << "\nC D "
                  << m->getTitle() << " "
                  << m->getDirector() << " "
                  << m->getReleaseMonth() << " "
                  << m->getYear() << " "
-                 << m->getStock() << endl;
+                 << totalStock << endl;
 
             currentGroup = m;
         }
