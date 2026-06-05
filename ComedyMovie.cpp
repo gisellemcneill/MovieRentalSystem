@@ -4,7 +4,7 @@
 
 // Creation Date: 5/27/26
 
-// Date of Last Modification: 5/27/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -37,6 +37,13 @@ ComedyMovie::ComedyMovie(const string& title, const string& director, int year, 
     : Movie(title, director, year, 'F', stock) {}
 // End of ComedyMovie()
 
+
+ComedyMovie::ComedyMovie(const ComedyMovie& other) 
+    : Movie(other.title, other.director, other.releaseYear, 'F', other.stock) {}
+
+Movie* ComedyMovie::clone() {
+    return new ComedyMovie(*this);
+}
 
 // ------------------------------------ display() ------------------------------------
 // Description:

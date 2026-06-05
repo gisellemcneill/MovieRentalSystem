@@ -4,7 +4,7 @@
 
 // Creation Date: 5/29/26
 
-// Date of Last Modification: 5/29/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -41,6 +41,16 @@ ClassicMovie::ClassicMovie(const string& title, const string& director, int mont
 }
 // End of ClassicMovie()
 
+
+ClassicMovie::ClassicMovie(const ClassicMovie& other) 
+    : Movie(other.title, other.director, other.releaseYear, 'C', other.stock) {
+    releaseMonth = other.releaseMonth;
+    majorActor = other.majorActor;
+}
+
+Movie* ClassicMovie::clone() {
+    return new ClassicMovie(*this);
+}
 
 // ------------------------------------ getMajorActor() ------------------------------------
 // Description:

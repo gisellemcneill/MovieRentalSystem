@@ -4,7 +4,7 @@
 
 // Creation Date: 5/27/26
 
-// Date of Last Modification: 5/27/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -30,6 +30,9 @@ class ComedyMovie : public Movie {
 
     //constructor
     ComedyMovie(const string& title, const string& director, int year, int stock);
+    ComedyMovie(const ComedyMovie& other);
+
+    Movie* clone() override;
 
     void display(ostream& out) const override;
     bool operator<(const Movie& other) const override;

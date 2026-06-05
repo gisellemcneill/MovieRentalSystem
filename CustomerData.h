@@ -4,7 +4,7 @@
 
 // Creation Date: 6/2/26
 
-// Date of Last Modification: 6/3/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,8 +20,8 @@
 // deletion and follows the Rule of Three with an overridden copy constructor and assignment operator.
 // --------------------------------------------------------------------------------------------------------------------
 
-#ifndef CUSTOMER_H
-#define CUSTOMER_H
+#ifndef CUSTOMERDATA_H
+#define CUSTOMERDATA_H
 
 #include <string>
 #include <vector>

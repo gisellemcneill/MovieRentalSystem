@@ -4,7 +4,7 @@
 
 // Creation Date: 5/27/26
 
-// Date of Last Modification: 5/27/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -37,6 +37,8 @@ public:
     //Constructor
     Movie(const string& title, const string& director, int year, char genre, int stock);
     virtual ~Movie(); //virtual destructor
+
+    virtual Movie* clone() = 0; //virtual clone function
 
     //getters
     string getTitle() const;

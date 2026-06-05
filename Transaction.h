@@ -4,7 +4,7 @@
 
 // Creation Date: 5/31/26
 
-// Date of Last Modification: 5/31/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -36,9 +36,8 @@ class Company;
 class Transaction {
 public:
     //constructor
-    Transaction(char type, Movie* movie, int customerID);
-    Transaction(const Transaction& other);
-    virtual ~Transaction(); //virtual destructor
+    Transaction();
+    virtual ~Transaction() = default; //virtual destructor
 
     virtual Transaction* clone() const = 0; //virtual clone function
 
@@ -47,12 +46,11 @@ public:
     Movie* getMovie() const;
     int getCustomerID() const;
 
-    //pure virtual functions
     virtual bool execute(Company& company) = 0;
-    virtual void display(ostream& out) const = 0;
+    void display(ostream& out) const;
 
     //To be used with display
-    friend ostream& operator<<(ostream& out, const Transaction& t);
+    friend ostream& operator<<(ostream& out, const Transaction* t);
 
 protected:
     char type;

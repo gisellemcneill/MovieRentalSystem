@@ -4,7 +4,7 @@
 
 // Creation Date: 6/1/26
 
-// Date of Last Modification: 6/3/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@
 // Customer object is initialized with the specified customerID, lastName, and firstName.
 // The history transaction vector starts empty.
 // -------------------------------------------------------------------------------------------------
-Customer::Customer(int id, string lName, string fName) : customerID(id), lastName(lName), firstName(fName)  {}
+Customer::Customer(string fName, string lName, int id) : customerID(id), lastName(lName), firstName(fName)  {}
 // End of Customer()
 
 
@@ -185,11 +185,11 @@ bool Customer::validateReturn(Movie* m) const {
 // Postconditions:
 // Displays all transaction entries via standard output. If history is empty, prints nothing.
 // --------------------------------------------------------------------------------------------
-void Customer::displayHistory() const {
+void Customer::displayHistory(ostream& out) const {
     if (history.empty()) { return; }
 
     for (int i = history.size(); i > 0; --i) {
-        history[i - 1]->display();
+        history[i - 1]->display(out);
     }
 }
 // End of displayHistory()
@@ -223,4 +223,9 @@ Customer& Customer::operator=(const Customer& other) {
     }
 
     return *this;
+}
+
+ostream& operator<<(ostream& out, const Customer* c) {
+    c->displayHistory(out);
+    return out;
 }
