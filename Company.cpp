@@ -34,6 +34,9 @@ void Company::loadMovies(string& fileName) {
                 inventory.addMovie(newMovie);
             }
         }
+        else {
+            cerr << "WARNING: Invalid movie genre " << genre << "\n";
+        }
     }
 }
 void Company::loadCustomers(string& fileName) {
@@ -72,14 +75,18 @@ void Company::processCommands(string& fileName) {
         ss >> command;
         switch (command) {
             case 'I' :
+                inventory.displayInventory();
                 continue;
+
             case 'H': {
                 int ID;
                 ss >> ID;
 
                 Customer* customer = customers.getCustomer(ID);
                 cout << customer;
+                continue;
             }
+
             case 'B': {
                 int ID;
                 string mType;
@@ -109,7 +116,9 @@ void Company::processCommands(string& fileName) {
                 }
                 t->execute(*this);
                 customer->addTransaction(t);
+                continue;
             }
+
             case 'R': {
                 int ID;
                 string mType;
@@ -139,8 +148,11 @@ void Company::processCommands(string& fileName) {
                 }
                 t->execute(*this);
                 customer->addTransaction(t);
+                continue;
             }
+
             default :
+                cerr << "WARNING: Invalid action code " << command << "\n";
                 continue;
         }
     }

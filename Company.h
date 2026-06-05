@@ -17,9 +17,9 @@ public:
 	Company();
 	~Company();
 
-	void loadMovies(string& fileName) const;
-	void loadCustomers(string& fileName) const;
-	void processCommands(string& fileName) const;
+	void loadMovies(string& fileName);
+	void loadCustomers(string& fileName);
+	void processCommands(string& fileName);
 
 	Inventory* getInventory();
 
@@ -27,8 +27,8 @@ private:
 	Inventory inventory;
 	CustomerData customers;
 
-	ReturnFactory rFac;
 	BorrowFactory bFac;
+	ReturnFactory rFac;
 
 	MovieFactory mFac;
 };
