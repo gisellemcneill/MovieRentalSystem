@@ -4,7 +4,7 @@
 
 // Creation Date: 5/31/26
 
-// Date of Last Modification: 5/31/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -31,51 +31,14 @@
 // Postconditions:
 // Transaction object is initialized with provided values
 // --------------------------------------------------------------------------------------------
-Transaction::Transaction(char type, Movie *movie, int customerID) {
+Transaction::Transaction() {
 
-    this->type = type;
-    this->movie = new Movie(*other.movie);
-    this->customerID = customerID;
-
-}
-// End of Transaction()
-
-
-// ------------------------------------ Transaction Copy Constructor ------------------------------------
-// Description:
-// Initializes a Transaction object with the given type, movie pointer, and customer ID.
-//
-// Preconditions:
-// movie pointer is valid and not nullptr
-//
-// Postconditions:
-// Transaction object is initialized with provided values
-// --------------------------------------------------------------------------------------------
-Transaction::Transaction(const Transaction& other) {
-
-    this->type = other.type;
-    this->movie = new Movie(*other.movie);
-    this->customerID = other.customerID;
+    this->type = 'X';
+    this->movie = nullptr;
+    this->customerID = 0;
 
 }
 // End of Transaction()
-
-
-// ------------------------------------ Transaction Destructor ------------------------------------
-// Description:
-// Virtual destructor ensures proper cleanup of derived class objects
-// when deleted through a base class pointer.
-//
-// Preconditions:
-// None
-//
-// Postconditions:
-//The derived class destructor is called before the base class destructor
-// --------------------------------------------------------------------------------------------
-Transaction::~Transaction() {
-    delete movie;
-}
-//End of ~Transaction()
 
 
 // ------------------------------------ getType() ------------------------------------
@@ -89,7 +52,6 @@ Transaction::~Transaction() {
 // Returns type as a char, Transaction object is unchanged
 // --------------------------------------------------------------------------------------------
 char Transaction::getType() const {
-
     return type;
 }
 //End of getType()
@@ -106,9 +68,7 @@ char Transaction::getType() const {
 // Returns movie as a Movie*, Transaction object is unchanged
 // --------------------------------------------------------------------------------------------
 Movie* Transaction::getMovie() const {
-
     return movie;
-
 }
 //End of getType()
 
@@ -124,12 +84,13 @@ Movie* Transaction::getMovie() const {
 // Returns customerID as an int, Transaction object is unchanged
 // --------------------------------------------------------------------------------------------
 int Transaction::getCustomerID() const {
-
     return customerID;
-
 }
 //End of getCustomerID()
 
+void Transaction::display(ostream& out) const {
+    out << type << " " << movie->getTitle() << endl;
+}
 
 // ------------------------------------ operator<< ------------------------------------
 // Description:
@@ -144,33 +105,10 @@ int Transaction::getCustomerID() const {
 // Transaction information is printed to the output stream
 // Returns reference to ostream for chaining
 // --------------------------------------------------------------------------------------------
-ostream& operator<<(ostream& out, const Transaction& t) {
+ostream& operator<<(ostream& out, const Transaction* t) {
 
-    t.display(out);
+    t->display(out);
     return out;
 
 }
 //End of operator<<()
-
-
-// ------------------------------------ Transaction Assignment Operator ------------------------------------
-// Description:
-// Initializes a Transaction object with the given type, movie pointer, and customer ID.
-//
-// Preconditions:
-// movie pointer is valid and not nullptr
-//
-// Postconditions:
-// Transaction object is initialized with provided values
-// --------------------------------------------------------------------------------------------
-Transaction& Transaction::Transaction(const Transaction& other) {
-    if (this == &other) { return *this; }
-    delete movie;
-
-    this->type = other.type;
-    this->movie = new Movie(*other.movie);
-    this->customerID = other.customerID;
-
-    return *this;
-}
-// End of Transaction()

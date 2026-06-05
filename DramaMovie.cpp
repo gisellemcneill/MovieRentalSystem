@@ -4,7 +4,7 @@
 
 // Creation Date: 5/29/26
 
-// Date of Last Modification: 5/29/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -37,6 +37,14 @@ DramaMovie::DramaMovie(const string& title, const string& director, int year, in
     : Movie(title, director, year, 'D', stock) {}
 // End of DramaMovie()
 
+
+DramaMovie::DramaMovie(const DramaMovie& other) 
+    : Movie(other.title, other.director, other.releaseYear, 'D', other.stock) {}
+
+    
+Movie* DramaMovie::clone() {
+    return new DramaMovie(*this);
+}
 
 // ------------------------------------ display() ------------------------------------
 // Description:

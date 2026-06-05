@@ -4,7 +4,7 @@
 
 // Creation Date: 5/29/26
 
-// Date of Last Modification: 06/01/26
+// Date of Last Modification: 06/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -32,6 +32,9 @@ class ClassicMovie : public Movie {
     //constructor
     ClassicMovie(const string& title, const string& director, int month, int year,
         int stock, const string& actor);
+    ClassicMovie(const ClassicMovie& other);
+
+    Movie* clone() override;
 
     string getMajorActor() const;
     int getReleaseMonth() const;

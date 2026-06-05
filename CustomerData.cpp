@@ -4,7 +4,7 @@
 
 // Creation Date: 6/2/26
 
-// Date of Last Modification: 6/3/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ void CustomerData::addCustomer(int ID, string lName, string fName) {
         resize();
     }
 
-    Customer* customer = new Customer(ID, lName, fName);
+    Customer* customer = new Customer(fName, lName, ID);
 
     insert(ID, customer);
     size++;

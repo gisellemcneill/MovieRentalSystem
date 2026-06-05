@@ -4,7 +4,7 @@
 
 // Creation Date: 6/1/26
 
-// Date of Last Modification: 6/3/26
+// Date of Last Modification: 6/05/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -43,10 +43,11 @@ public:
     string getFirstName() const;
 
     bool addTransaction(Transaction* t);
-    void displayHistory() const;
+    void displayHistory(ostream& out) const;
 
+    friend ostream& operator<<(ostream& out, const Customer* c);
     //assignment operator
-    Customer& operator=(Customer other);
+    Customer& operator=(const Customer& other);
 private:
     int customerID;
     string lastName;
