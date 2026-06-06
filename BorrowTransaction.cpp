@@ -47,6 +47,7 @@ BorrowTransaction::~BorrowTransaction() {
 // Customer history and inventory unchanged if unsuccessful
 // --------------------------------------------------------------------------------------------
 bool BorrowTransaction::execute(Company& company) {
+
     cout << customerID << " is " << "Borrowing: " << movie->getTitle() << endl; //temp while company is not implemented
 
     Movie* real = findInInventory(company);
@@ -77,6 +78,7 @@ bool BorrowTransaction::execute(Company& company) {
         }
         return false;
     }
+    return true;
 }
 //End of execute()
 
