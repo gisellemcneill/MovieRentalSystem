@@ -5,18 +5,35 @@ set(CMAKE_CXX_STANDARD 20)
 
 #Main
 add_executable(Program4
-        main.cpp
+        driver.cpp
         Movie.h
         Movie.cpp
         ComedyMovie.h
         ComedyMovie.cpp
+        DramaMovie.h
         DramaMovie.cpp
         ClassicMovie.h
         ClassicMovie.cpp
-        Transaction.cpp
         Transaction.h
+        Transaction.cpp
+        BorrowTransaction.h
+        BorrowTransaction.cpp
+        ReturnTransaction.h
+        ReturnTransaction.cpp
+        MovieList.h
         MovieList.cpp
-        MovieList.h)
+        Inventory.h
+        Inventory.cpp
+        Customer.h
+        Customer.cpp
+        CustomerData.h
+        CustomerData.cpp
+        MovieFactory.h
+        MovieFactory.cpp
+        TransactionFactory.h
+        TransactionFactory.cpp
+        Company.h
+        Company.cpp)
 
 target_include_directories(Program4 PRIVATE ${CMAKE_SOURCE_DIR})
 

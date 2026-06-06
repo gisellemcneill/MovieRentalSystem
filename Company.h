@@ -17,9 +17,9 @@ public:
 	Company();
 	~Company();
 
-	void loadMovies(string& fileName);
-	void loadCustomers(string& fileName);
-	void processCommands(string& fileName);
+	void loadMovies(const string& fileName);
+	void loadCustomers(const string& fileName);
+	void processCommands(const string& fileName);
 
 	Inventory* getInventory();
 
