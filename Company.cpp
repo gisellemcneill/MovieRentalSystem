@@ -8,7 +8,7 @@ Company::~Company() {}
 void Company::loadMovies(const string& fileName) {
     ifstream file(fileName);
     if (!file) {
-        cerr << "ERROR: Could not load movies, file does not exist\n";
+        cout << "ERROR: Could not load movies, file does not exist" << "\n" << flush;
         return;
     }
 
@@ -29,7 +29,7 @@ void Company::loadMovies(const string& fileName) {
         if (!director.empty() && director[0] == ' ') director.erase(0, 1);
         if (!title.empty() && title[0] == ' ') title.erase(0, 1);
 
-        if (genre != 'F' || genre != 'D' || genre != 'C') {
+        if (genre == 'F' || genre == 'D' || genre == 'C') {
             Movie* newMovie = mFac.createMovie(genre, stock, director, title, ss);
 
             if (newMovie != nullptr) {
@@ -37,14 +37,14 @@ void Company::loadMovies(const string& fileName) {
             }
         }
         else {
-            cerr << "WARNING: Invalid movie genre " << genre << "\n";
+            cout << "WARNING: Invalid movie genre " << genre << "\n" << flush;
         }
     }
 }
 void Company::loadCustomers(const string& fileName) {
     ifstream file(fileName);
     if (!file) {
-        cerr << "ERROR: Could not load customers, file does not exist\n";
+        cout << "ERROR: Could not load customers, file does not exist" << "\n" << flush;;
         return;
     }
 
@@ -83,7 +83,7 @@ void Company::loadCustomers(const string& fileName) {
 void Company::processCommands(const string& fileName) {
     ifstream file(fileName);
     if (!file) {
-        cerr << "ERROR: Could not process commands, file does not exist\n";
+        cout << "ERROR: Could not process commands, file does not exist" << "\n" << flush;
         return;
     }
 
@@ -109,7 +109,7 @@ void Company::processCommands(const string& fileName) {
 
                 //Added a check for invalid ID
                 if (customer == nullptr) {
-                    cerr << "ERROR: Invalid Customer ID  " << ID << endl;
+                    cout << "ERROR: Invalid Customer ID  " << ID << "\n" << flush;
                     continue;
                 }
 
@@ -131,14 +131,14 @@ void Company::processCommands(const string& fileName) {
 
                 //need to validate mediaType
                 if (mType != 'D') {
-                    cerr << "ERROR: Invalid media type " << mType <<endl;
+                    cout << "ERROR: Invalid media type " << mType << "\n" << flush;
                     continue;
                 }
 
                 Customer* customer = customers.getCustomer(ID);
                 //Added customer validation
                 if (customer == nullptr) {
-                    cerr << "ERROR: Invalid Customer ID  " << ID << endl;
+                    cout << "ERROR: Invalid Customer ID  " << ID << "\n" << flush;
                     continue;
                 }
 
@@ -160,7 +160,7 @@ void Company::processCommands(const string& fileName) {
                     ComedyMovie* real = inventory.findComedy(title, year);
                     //validate that real is a Movie
                     if (real == nullptr) {
-                        cerr << "ERROR: ComedyMovie not found in inventory" << endl;
+                        cout << "ERROR: ComedyMovie not found in inventory" << "\n" << flush;
                         continue;
                     }
                     newMovie = real -> clone();
@@ -183,7 +183,7 @@ void Company::processCommands(const string& fileName) {
                     DramaMovie* real = inventory.findDrama(director, title);
                     //validate that real is a Movie
                     if (real == nullptr) {
-                        cerr << "ERROR: ComedyMovie not found in inventory" << endl;
+                        cout << "ERROR: ComedyMovie not found in inventory" << "\n" << flush;
                         continue;
                     }
                     newMovie = real -> clone();
@@ -197,20 +197,20 @@ void Company::processCommands(const string& fileName) {
                     //find the real movie
                     ClassicMovie* real = inventory.findClassic(month, year, actor);
                     if (real == nullptr) {
-                        cerr << "ERROR: ClassicMovie not found" << endl;
+                        cout << "ERROR: ClassicMovie not found" << "\n" << flush;
                         continue;
                     }
                     //create a new movie
                     newMovie = real -> clone();
 
                 }else {
-                    cerr << "ERROR: Invalid genre " << genre << endl;
+                    cout << "ERROR: Invalid genre " << genre << "\n" << flush;
                     continue;
                 }
 
 
                 if (newMovie == nullptr) {
-                    cerr << "ERROR: New Movie not found in inventory" << endl;
+                    cout << "ERROR: New Movie not found in inventory" << "\n" << flush;
                     continue;
                 }
 
@@ -224,7 +224,7 @@ void Company::processCommands(const string& fileName) {
 
                 //Check if t exists
                 if (t == nullptr) {
-                    cerr << "ERROR: Could not create Transaction" << endl;
+                    cout << "ERROR: Could not create Transaction" << "\n" << flush;
                     delete newMovie;
                     continue;
                 }
@@ -240,7 +240,7 @@ void Company::processCommands(const string& fileName) {
             }
 
             default :
-                cerr << "ERROR: Invalid command " << command << endl;
+                cout << "ERROR: Invalid command " << command << "\n" << flush;
                 continue;
 
         }

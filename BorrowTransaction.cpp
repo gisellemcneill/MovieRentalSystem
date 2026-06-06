@@ -48,20 +48,19 @@ BorrowTransaction::~BorrowTransaction() {
 // --------------------------------------------------------------------------------------------
 bool BorrowTransaction::execute(Company& company) {
 
-    cout << customerID << " is " << "Borrowing: " << movie->getTitle() << endl; //temp while company is not implemented
-
     Movie* real = findInInventory(company);
     //Movie is valid and found check
 
     if (real == nullptr) {
-        cerr << "ERROR: Movie not found" << endl;
+        cout << "ERROR: Movie not found" << "\n" << flush;
         return false;
     }
 
     bool success = real -> decrementStock();
     if (!success) {
-        cerr << "ERROR: " << movie -> getTitle() <<
-            " is out of stock." << endl;
+        cout << "ERROR: " << movie -> getTitle() <<
+            " is out of stock." << "\n" << flush;
+
         if (movie -> getGenre() == 'C') {
             ClassicMovie* classic = static_cast<ClassicMovie*>(movie);
             vector<ClassicMovie*> alternatives =
@@ -73,7 +72,8 @@ bool BorrowTransaction::execute(Company& company) {
                     cout << " " << c -> getMajorActor() << endl;
                 }
             }else {
-                cout << "No alternative actors available." << endl;
+                cout << "ERROR: No copies of: " << classic -> getTitle()
+                << " with a different major actor are available." << "\n" << flush;
             }
         }
         return false;

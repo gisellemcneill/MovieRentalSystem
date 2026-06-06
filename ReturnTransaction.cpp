@@ -45,23 +45,22 @@ ReturnTransaction::~ReturnTransaction() {
 // Customer history and inventory unchanged if unsuccessful
 // --------------------------------------------------------------------------------------------
 bool ReturnTransaction::execute(Company& company) {
-	cout << customerID << " is " << "Returning: " << movie->getTitle() << endl; //temp while company is not implemented
 
 	Customer* customer = company.findCustomer(customerID);
 	if (customer == nullptr) {
-		cerr << "ERROR: Invalid customer ID" << endl;
+		cout << "ERROR: Invalid customer ID" << "\n" << flush;
 		return false;
 	}
 
 	if (!customer -> validateReturn(movie)){
-		cerr << "ERROR: Customer " << customerID <<
-			" never borrowed " << movie -> getTitle() << endl;
+		cout << "ERROR: Customer " << customerID <<
+			" never borrowed " << movie -> getTitle() << "\n" << flush;
 		return false;
 	}
 
 	Movie* real = findInInventory(company);
 	if (real == nullptr) {
-		cerr << "ERROR: Movie not found in inventory" << endl;
+		cout << "ERROR: Movie not found in inventory" << "\n" << flush;
 		return false;
 	}
 

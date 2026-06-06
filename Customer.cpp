@@ -197,8 +197,8 @@ void Customer::displayHistory(ostream& out) const {
 
     for (int i = history.size(); i > 0; --i) {
         history[i - 1]->display(out);
-        cout << endl;
     }
+    cout << endl;
 }
 // End of displayHistory()
 
