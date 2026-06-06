@@ -94,9 +94,25 @@ int Transaction::getCustomerID() const {
 }
 //End of getCustomerID()
 
+
+// ------------------------------------ display() ------------------------------------
+// Description:
+// Prints the Transaction in a readable format showing the transaction
+// type character followed by the movie title. Used by Customer::displayHistory()
+// to print each transaction entry in customer history.
+//
+// Preconditions:
+// movie pointer is valid and not nullptr
+//
+// Postconditions:
+// Transaction type and movie title printed to output stream
+// Transaction object is unchanged
+// --------------------------------------------------------------------------------------------
 void Transaction::display(ostream& out) const {
     out << type << " " << movie->getTitle() << endl;
 }
+//End of display()
+
 
 // ------------------------------------ operator<< ------------------------------------
 // Description:

@@ -60,6 +60,26 @@ void Company::loadCustomers(const string& fileName) {
         customers.addCustomer(ID, lName, fName);
     }
 }
+
+
+// ------------------------------------ processCommands() ------------------------------------
+// Description:
+// Reads and processes all commands from the given command file line by line.
+// Supports four action codes: I (inventory), H (history), B (borrow), R (return).
+// For B and R commands parses genre specific fields and finds the corresponding
+// movie in inventory before creating and executing the transaction.
+// Invalid action codes, media types, genres, customer IDs, and movie lookups
+// are caught and reported with error messages. Invalid commands are discarded
+// and processing continues with the next line.
+//
+// Preconditions:
+// fileName is a valid path to a readable command file
+// Inventory and CustomerData are already loaded
+//
+// Postconditions:
+// All valid commands are executed and applied to inventory and customer history
+// All invalid commands are discarded with appropriate error messages printed
+// --------------------------------------------------------------------------------------------
 void Company::processCommands(const string& fileName) {
     ifstream file(fileName);
     if (!file) {
@@ -93,7 +113,12 @@ void Company::processCommands(const string& fileName) {
                     continue;
                 }
 
+                cout << "\n---------- History for customer " << ID << ": " << "--------\n\n";
+
                 customer -> displayHistory(cout);
+
+                cout << "---------------------------------------------\n";
+
                 continue;
             }
 
@@ -205,8 +230,9 @@ void Company::processCommands(const string& fileName) {
                 }
 
                 bool success = t -> execute(*this);
+
                 if (success) {
-                    customer -> addTransaction(t);
+                   customer -> addTransaction(t);
                 }else {
                     delete t;
                 }

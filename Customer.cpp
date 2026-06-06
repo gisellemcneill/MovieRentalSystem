@@ -188,10 +188,16 @@ bool Customer::validateReturn(Movie* m) const {
 // Displays all transaction entries via standard output. If history is empty, prints nothing.
 // --------------------------------------------------------------------------------------------
 void Customer::displayHistory(ostream& out) const {
-    if (history.empty()) { return; }
+
+    if (history.empty()) {
+
+        cout << "Customer has no history at the moment\n\n";
+        return;
+    }
 
     for (int i = history.size(); i > 0; --i) {
         history[i - 1]->display(out);
+        cout << endl;
     }
 }
 // End of displayHistory()
