@@ -1,6 +1,8 @@
-#pragma once
+#ifndef TRANSACTIONFACTORY_H
+#define TRANSACTIONFACTORY_H
 
-#include "Transaction.h"
+class Transaction;
+class Movie;
 
 class TransactionFactory {
 public:
@@ -16,3 +18,4 @@ class BorrowFactory : public TransactionFactory {
 public:
 	Transaction* createTransaction(Movie* movie, int ID) const override;
 };
+#endif

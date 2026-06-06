@@ -25,10 +25,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Transaction.h"
 #include "Movie.h"
 
 using namespace std;
+
+class Transaction;
+class Movie;
 
 class Customer {
 public:
@@ -45,6 +47,9 @@ public:
     bool addTransaction(Transaction* t);
     void displayHistory(ostream& out) const;
 
+    //helps validate addTransaction
+    bool validateReturn(Movie* m) const;
+
     friend ostream& operator<<(ostream& out, const Customer* c);
     //assignment operator
     Customer& operator=(const Customer& other);
@@ -55,8 +60,6 @@ private:
 
     vector<Transaction*> history;
 
-    //helper for addTransaction
-    bool validateReturn(Movie* m) const;
 };
 
 #endif

@@ -1,4 +1,6 @@
 #include "Company.h"
+#include "Transaction.h"
+
 
 Company::Company() {}
 Company::~Company() {}
@@ -218,3 +220,45 @@ void Company::processCommands(const string& fileName) {
         }
     }
 }
+
+
+// ------------------------------------ findCustomer() ------------------------------------
+// Description:
+// Searches the CustomerData hash table for a Customer with the given ID.
+// Delegates entirely to CustomerData::getCustomer().
+//
+// Preconditions:
+// id is a valid 4 digit integer
+//
+// Postconditions:
+// Returns pointer to matching Customer if found
+// Returns nullptr if customer ID not found
+// CustomerData is unchanged
+// --------------------------------------------------------------------------------------------
+Customer* Company::findCustomer(int id) {
+
+    return customers.getCustomer(id);
+
+}
+//End of findCustomer()
+
+
+// ------------------------------------ getInventory() ------------------------------------
+// Description:
+// Returns a reference to the Inventory object owned by Company.
+// Used by Transaction subclasses to access and modify movie stock
+// during borrow and return operations.
+//
+// Preconditions:
+// None
+//
+// Postconditions:
+// Returns reference to Inventory object
+// Company and Inventory are unchanged
+// --------------------------------------------------------------------------------------------
+Inventory& Company::getInventory() {
+
+    return inventory;
+
+}
+//End of getInventory()
