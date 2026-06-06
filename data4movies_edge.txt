@@ -1,0 +1,20 @@
+F, 10, Nora Ephron, You've Got Mail, 1998
+F, 10, Woody Allen, Annie Hall, 1977
+F, 10, Rob Reiner, When Harry Met Sally, 1989
+F, 0, Gore Verbinski, Pirates of the Caribbean, 2003
+D, 10, Steven Spielberg, Schindler's List, 1993
+D, 10, Gus Van Sant, Good Will Hunting, 2000
+D, 0, Clint Eastwood, Unforgiven, 1992
+C, 10, George Cukor, Holiday, Katherine Hepburn 9 1938
+C, 10, George Cukor, Holiday, Cary Grant 9 1938
+C, 1, George Cukor, The Philadelphia Story, Katherine Hepburn 5 1940
+C, 1, George Cukor, The Philadelphia Story, Cary Grant 5 1940
+C, 10, Michael Curtiz, Casablanca, Humphrey Bogart 8 1942
+C, 10, Michael Curtiz, Casablanca, Ingrid Bergman 8 1942
+Z, 10, Invalid Director, Invalid Movie, 1999
+Z, 10, George Cukor, Holiday, Katherine Hepburn 9 1938
+A, 5, Some Director, Some Movie, 2000
+Q, 10, Another Director, Another Movie, 1995
+F, 10, Joel Coen, Fargo, 1996
+D, 10, Barry Levinson, Good Morning Vietnam, 1988
+C, 10, Hal Ashby, Harold and Maude, Ruth Gordon 3 1971

@@ -1,0 +1,95 @@
+I
+H 1000
+H 1007
+H 1014
+H 1021
+H 1028
+H 1035
+H 1042
+H 1049
+H 1056
+H 1063
+H 1070
+H 1077
+H 1084
+H 1091
+H 1098
+H 1105
+H 1112
+H 1119
+H 1126
+H 1133
+H 9999
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D F You've Got Mail, 1998
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 1000 D C 9 1938 Katherine Hepburn
+B 2000 D F Pirates of the Caribbean, 2003
+B 3000 D D Clint Eastwood, Unforgiven,
+B 1007 D F You've Got Mail, 1998
+B 1014 D F Annie Hall, 1977
+B 1021 D D Gus Van Sant, Good Will Hunting,
+B 1028 D C 9 1938 Katherine Hepburn
+B 1035 D F When Harry Met Sally, 1989
+B 1042 D D Steven Spielberg, Schindler's List,
+B 1049 D C 8 1942 Humphrey Bogart
+B 1056 D F Fargo, 1996
+B 1063 D D Barry Levinson, Good Morning Vietnam,
+B 1070 D C 9 1938 Cary Grant
+R 1000 D F You've Got Mail, 1998
+R 1000 D F You've Got Mail, 1998
+R 2000 D F You've Got Mail, 1998
+R 9999 D F You've Got Mail, 1998
+R 1000 D F Annie Hall, 1977
+B 1000 D D Gus Van Sant, Good Will Hunting,
+R 1000 D D Gus Van Sant, Good Will Hunting,
+R 1000 D D Gus Van Sant, Good Will Hunting,
+B 4000 D F Bogus Movie, 2025
+B 4000 D D Bogus Director, Bogus Title,
+B 4000 D C 1 2025 Fake Actor
+B 4000 D Y You've Got Mail, 1998
+B 4000 Y F You've Got Mail, 1998
+X 1000 D F You've Got Mail, 1998
+Q 1000 D F You've Got Mail, 1998
+I
+H 1000
+H 1007
+H 1014
+H 1021
+H 1028
+H 1035
+H 1042
+H 1049
+H 1056
+H 1063
+H 1070
+H 1077
+H 1084
+H 1091
+H 1098
+H 1105
+H 1112
+H 1119
+H 1126
+H 1133
+H 2000
+H 3000
+H 4000
+H 9999
