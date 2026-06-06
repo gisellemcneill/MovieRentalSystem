@@ -4,7 +4,7 @@
 
 // Creation Date: 6/1/26
 
-// Date of Last Modification: 6/1/26
+// Date of Last Modification: 6/5/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -14,6 +14,7 @@
 
 // Implements MovieList member functions including:
 // MovieList(), ~MovieList(), add(), findComedy(), findDrama(), findClassic(), display()
+// displayClassic(), findClassicsByTitle()
 
 // MovieList maintains three sorted sets, one per genre, each with a custom comparator.
 // Memory ownership: MovieList is responsible for deleting all Movie objects
@@ -169,6 +170,33 @@ ClassicMovie* MovieList::findClassic(int month, int year, const string &actor) c
     return nullptr;
 }
 //End of findClassic()
+
+
+// ------------------------------------ findClassicsByTitle() ------------------------------------
+// Description:
+// Searches inventory for all available ClassicMovie objects matching
+// the given title.
+//
+// Preconditions:
+// title is a valid non empty string
+//
+// Postconditions:
+// Returns vector of ClassicMovie pointers with matching title and stock > 0
+// Returns empty vector if no matches found
+// Inventory is unchanged
+// --------------------------------------------------------------------------------------------
+vector<ClassicMovie*> MovieList::findClassicsByTitle(const string &title) const {
+
+    vector<ClassicMovie*> matches;
+
+    for (ClassicMovie* m : classics) {
+        if (m -> getTitle() == title && m -> getStock() > 0) {
+            matches.push_back(m);
+        }
+    }
+    return matches;
+}
+//End of findClassicsByTitle
 
 
 // ------------------------------------ displayClassic() ------------------------------------

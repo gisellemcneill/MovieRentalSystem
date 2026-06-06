@@ -17,9 +17,15 @@
 
 //Pure Virtual functions execute() and display() will be implemented by derived classs
 // BorrowTransaction and ReturnTransaction
+
+// findInInventory() is a protected helper method used by derived
+// classes to locate the corresponding Movie object in the inventory
+// using the transaction's stored movie copy as a search key.
 // --------------------------------------------------------------------------------------------------------------------
 
 #include "Transaction.h"
+#include "ClassicMovie.h"
+#include "Company.h"
 
 // ------------------------------------ Transaction Constructor ------------------------------------
 // Description:
@@ -112,3 +118,46 @@ ostream& operator<<(ostream& out, const Transaction* t) {
 
 }
 //End of operator<<()
+
+
+// ------------------------------------ findInInventory() ------------------------------------
+// Description:
+// Protected helper method that searches the inventory for the real Movie object
+// corresponding to this transaction's stored movie copy.
+// Uses the movie's genre to determine which genre specific find method to call.
+// For ClassicMovie uses static_cast which is safe since genre is already verified.
+//
+// Preconditions:
+// movie pointer is valid and not nullptr
+// company is a valid reference to the running Company instance
+//
+// Postconditions:
+// Returns pointer to the real inventory Movie object if found
+// Returns nullptr if movie is not found in inventory
+// Inventory and transaction are unchanged
+// --------------------------------------------------------------------------------------------
+Movie* Transaction::findInInventory(Company &company) const {
+
+    if (movie -> getGenre() == 'F') {
+
+        return company.getInventory().findComedy(movie -> getTitle(), movie -> getYear());
+
+    } else if (movie -> getGenre() == 'D'){
+
+        return company.getInventory().findDrama(movie -> getDirector(), movie -> getTitle());
+
+    }else if (movie -> getGenre() == 'C') {
+
+        //ClassicMovie has extra fields than movie, so need to static cast
+        ClassicMovie* classic = static_cast<ClassicMovie*>(movie);
+
+        return company.getInventory().findClassic(classic -> getReleaseMonth(),
+            classic -> getYear(), classic -> getMajorActor());
+
+        }
+
+        return nullptr;
+
+    }
+//End of findInInventory
+

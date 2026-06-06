@@ -4,7 +4,7 @@
 
 // Creation Date: 6/1/26
 
-// Date of Last Modification: 6/1/26
+// Date of Last Modification: 6/5/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -31,6 +31,7 @@
 
 #include <set>
 #include <string>
+#include <vector>
 #include "ComedyMovie.h"
 #include "DramaMovie.h"
 #include "ClassicMovie.h"
@@ -49,6 +50,9 @@ public:
     ComedyMovie* findComedy(const string& title, int year) const;
     DramaMovie* findDrama(const string& director, const string& title) const;
     ClassicMovie* findClassic(int month, int year, const string& actor) const;
+
+    //find all available classics with given title
+    vector<ClassicMovie*> findClassicsByTitle(const string& title) const;
 
 
     void displayClassic() const; //formatting for ClassicMovie

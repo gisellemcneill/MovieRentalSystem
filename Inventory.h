@@ -4,7 +4,7 @@
 
 // Creation Date: 6/1/26
 
-// Date of Last Modification: 6/1/26
+// Date of Last Modification: 6/5/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -23,6 +23,8 @@
 #define INVENTORY_H
 
 #include "MovieList.h"
+#include "ClassicMovie.h"
+#include <vector>
 
 using namespace std;
 
@@ -42,6 +44,9 @@ public:
     ComedyMovie* findComedy(const string& title, int year) const;
     DramaMovie* findDrama(const string& director, const string& title) const;
     ClassicMovie* findClassic(int month, int year, const string& actor) const;
+
+    //delegates to MovieList to find available Classics when borrow < 0
+    vector<ClassicMovie*>findClassicsByTitle(const string& title) const;
 
     // displays all movies in sorted order via MovieList
     void displayInventory() const;

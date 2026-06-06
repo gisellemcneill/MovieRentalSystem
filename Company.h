@@ -21,7 +21,8 @@ public:
 	void loadCustomers(const string& fileName);
 	void processCommands(const string& fileName);
 
-	Inventory* getInventory();
+	Customer* findCustomer(int id); //return a customer
+	Inventory& getInventory(); //return a inventory
 
 private:
 	Inventory inventory;

@@ -9,6 +9,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 #include "BorrowTransaction.h"
+#include "Company.h"
+#include "ClassicMovie.h"
+#include "Customer.h"
 
 BorrowTransaction::BorrowTransaction(Movie* movie, int ID) {
 	this->type = 'B';
@@ -25,9 +28,57 @@ BorrowTransaction::~BorrowTransaction() {
     delete movie;
 }
 
+
+// ------------------------------------ execute() ------------------------------------------
+// Description:
+// Executes a borrow transaction by finding the real Movie object in inventory
+// and decrementing its stock by 1. If the movie is out of stock an error
+// message is displayed. For ClassicMovies, available alternative actors
+// are suggested when the requested actor version is out of stock.
+// Uses findInInventory() helper to locate the real inventory movie.
+//
+// Preconditions:
+// company is a valid reference to the running Company instance
+// movie pointer is valid and not nullptr
+//
+// Postconditions:
+// Returns true and decrements real inventory movie stock by 1 if successful
+// Returns false and prints error if movie not found or out of stock
+// Customer history and inventory unchanged if unsuccessful
+// --------------------------------------------------------------------------------------------
 bool BorrowTransaction::execute(Company& company) {
     cout << customerID << " is " << "Borrowing: " << movie->getTitle() << endl; //temp while company is not implemented
+
+    Movie* real = findInInventory(company);
+    //Movie is valid and found check
+
+    if (real == nullptr) {
+        cerr << "ERROR: Movie not found" << endl;
+        return false;
+    }
+
+    bool success = real -> decrementStock();
+    if (!success) {
+        cerr << "ERROR: " << movie -> getTitle() <<
+            " is out of stock." << endl;
+        if (movie -> getGenre() == 'C') {
+            ClassicMovie* classic = static_cast<ClassicMovie*>(movie);
+            vector<ClassicMovie*> alternatives =
+                company.getInventory().findClassicsByTitle(classic -> getTitle());
+
+            if (!alternatives.empty()) {
+                cout << "Available alternative: " << endl;
+                for (ClassicMovie* c : alternatives) {
+                    cout << " " << c -> getMajorActor() << endl;
+                }
+            }else {
+                cout << "No alternative actors available." << endl;
+            }
+        }
+        return false;
+    }
 }
+//End of execute()
 
 Transaction* BorrowTransaction::clone() const {
     return new BorrowTransaction(*this);

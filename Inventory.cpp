@@ -4,7 +4,7 @@
 
 // Creation Date: 6/1/26
 
-// Date of Last Modification: 6/1/26
+// Date of Last Modification: 6/5/26
 
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -15,7 +15,7 @@
 
 // Implements Inventory member functions including:
 // Inventory(), ~Inventory(), addMovie(), findComedy(),
-// findDrama(), findClassic(), displayInventory()
+// findDrama(), findClassic(), findClassicsByTitle(), displayInventory()
 // --------------------------------------------------------------------------------------------------------------------
 
 #include "Inventory.h"
@@ -122,6 +122,26 @@ ClassicMovie* Inventory::findClassic(int month, int year, const string& actor) c
 }
 // End of findClassic()
 
+
+// ------------------------------------ findClassicsByTitle() ------------------------------------
+// Description:
+// Searches inventory for all available ClassicMovie objects matching
+// the given title. Delegates entirely to MovieList::findClassicsByTitle().
+//
+// Preconditions:
+// title is a valid non empty string
+//
+// Postconditions:
+// Returns vector of ClassicMovie pointers with matching title and stock > 0
+// Returns empty vector if no matches found
+// Inventory is unchanged
+// --------------------------------------------------------------------------------------------
+vector<ClassicMovie *> Inventory::findClassicsByTitle(const string &title) const {
+
+    return movieList.findClassicsByTitle(title);
+
+}
+//End of findClassicsByTitle()
 
 // ------------------------------------ displayInventory() ------------------------------------
 // Description:

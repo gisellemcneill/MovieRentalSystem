@@ -19,6 +19,10 @@
 // The class uses a virtual destructor to ensure proper memory cleanup when deleting derived
 // class objects through a base class pointer. Derived classes will include BorrowTransaction and
 // ReturnTransaction must implement the pure virtual functions execute() and display()
+
+// findInInventory() is a protected helper method used by derived
+// classes to locate the corresponding Movie object in the inventory
+// using the transaction's stored movie copy as a search key.
 // --------------------------------------------------------------------------------------------------------------------
 
 
@@ -30,7 +34,6 @@
 
 using namespace std;
 
-//Company is not yet defined, and is needed as a parameter for execute()
 class Company;
 
 class Transaction {
@@ -56,6 +59,9 @@ protected:
     char type;
     Movie* movie;
     int customerID;
+
+    //helper method for locating movie in Inventory
+    Movie* findInInventory(Company& company) const;
 };
 
 #endif //PROGRAM4_TRANSACTION_H
