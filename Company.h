@@ -1,3 +1,18 @@
+// ------------------------------------------------ Company.cpp -------------------------------------------------------
+
+// Giselle McNeill, Nash Kumia CSS343 - 11AM T/TH with Wooyoung Kim
+
+// Creation Date: 6/05/26
+
+// Date of Last Modification: 6/6/26
+
+// --------------------------------------------------------------------------------------------------------------------
+
+// Purpose:
+// Declares the Company class, which parses, formats, and directs input for the program and produces output. 
+
+// --------------------------------------------------------------------------------------------------------------------
+
 #ifndef COMPANY_H
 #define COMPANY_H
 
@@ -14,12 +29,14 @@ using namespace std;
 
 class Company {
 public:
+	//constructor
 	Company();
 	~Company();
 
-	void loadMovies(const string& fileName);
-	void loadCustomers(const string& fileName);
-	void processCommands(const string& fileName);
+	//file loading functions
+	bool loadMovies(const string& fileName);
+	bool loadCustomers(const string& fileName);
+	bool processCommands(const string& fileName);
 
 	Customer* findCustomer(int id); //return a customer
 	Inventory& getInventory(); //return a inventory

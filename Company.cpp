@@ -1,15 +1,71 @@
+// ------------------------------------------------ Company.cpp -------------------------------------------------------
+
+// Giselle McNeill, Nash Kumia CSS343 - 11AM T/TH with Wooyoung Kim
+
+// Creation Date: 6/05/26
+
+// Date of Last Modification: 6/6/26
+
+// --------------------------------------------------------------------------------------------------------------------
+
+// Purpose:
+// Implements the Company class, which parses, formats, and directs input for the program and produces output. 
+
+// Implements Company member functions including:
+// Company(), ~Company(), loadMovies(), loadCustomers(), processCommands(), findCustomer(), getInventory()
+// --------------------------------------------------------------------------------------------------------------------
+
 #include "Company.h"
 #include "Transaction.h"
-
-
+// ------------------------------------ Company Constructor ------------------------------------
+// Description:
+// Initializes an empty Company.
+//
+// Preconditions:
+// None
+//
+// Postconditions:
+// Company is initialized with an empty Inventory, CustomerData, and all object factories
+// --------------------------------------------------------------------------------------------
 Company::Company() {}
-Company::~Company() {}
+//End of Company Constructor
 
-void Company::loadMovies(const string& fileName) {
+
+// ------------------------------------ Company Destructor ------------------------------------
+// Description:
+// Destroys the Company object. Inventory and CustomerData destructors are automatically
+// called and handles deletion of all stored Movie, Customer, and Transaction objects.
+//
+// Preconditions:
+// None
+//
+// Postconditions:
+// All Movie objects are deleted via the Inventory
+// All Customer objects are deleted via CustomerData
+// All Transaction object are deleted via Customer
+// --------------------------------------------------------------------------------------------
+Company::~Company() {}
+// End of ~Company()
+
+// ------------------------------------ loadMovies() ------------------------------------
+// Description:
+// Reads and processes all movies from the given movies file line by line.
+// Supports three genres: F (comedy), D (drama), C (classic).
+// Invalid genres are caught and reported with error messages, then discarded
+// and processing continues with the next line.
+//
+// Preconditions:
+// fileName is a valid path to a readable movie file.
+// file is properly formatted
+//
+// Postconditions:
+// All valid movies are created and stored in the inventory.
+// --------------------------------------------------------------------------------------------
+bool Company::loadMovies(const string& fileName) {
     ifstream file(fileName);
     if (!file) {
-        cout << "ERROR: Could not load movies, file does not exist" << "\n" << flush;
-        return;
+        cout << "ERROR: Could not load movies, file \"" << fileName << "\" does not exist" << "\n" << flush;
+        return false;
     }
 
     string line;
@@ -30,22 +86,44 @@ void Company::loadMovies(const string& fileName) {
         if (!title.empty() && title[0] == ' ') title.erase(0, 1);
 
         if (genre == 'F' || genre == 'D' || genre == 'C') {
-            Movie* newMovie = mFac.createMovie(genre, stock, director, title, ss);
+            if (stock >= 0) {
+                Movie* newMovie = mFac.createMovie(genre, stock, director, title, ss);
 
-            if (newMovie != nullptr) {
-                inventory.addMovie(newMovie);
+                if (newMovie != nullptr) {
+                    inventory.addMovie(newMovie);
+                }
+            }
+            else {
+                cout << "ERROR: Invalid stock amount " << stock << "\n" << flush;
             }
         }
         else {
-            cout << "WARNING: Invalid movie genre " << genre << "\n" << flush;
+            cout << "ERROR: Invalid movie genre " << genre << "\n" << flush;
         }
     }
+    cout << "Finished loading file \"" << fileName << "\"" << "\n" << flush;
+    return true;
 }
-void Company::loadCustomers(const string& fileName) {
+//End of loadMovies()
+
+
+// ------------------------------------ loadCustomers() ------------------------------------
+// Description:
+// Reads and processes all customers from the given customers file line by line.
+// Rejects repeat customer IDs.
+//
+// Preconditions:
+// fileName is a valid path to a readable customer file.
+// file is properly formatted with 4-digit customer IDs followed by firstName lastName.
+//
+// Postconditions:
+// All valid customers are created and stored in CustomerData
+// --------------------------------------------------------------------------------------------
+bool Company::loadCustomers(const string& fileName) {
     ifstream file(fileName);
     if (!file) {
-        cout << "ERROR: Could not load customers, file does not exist" << "\n" << flush;;
-        return;
+        cout << "ERROR: Could not load customers, file \"" << fileName << "\" does not exist" << "\n" << flush;;
+        return false;
     }
 
     string line;
@@ -59,7 +137,10 @@ void Company::loadCustomers(const string& fileName) {
         ss >> ID >> lName >> fName;
         customers.addCustomer(ID, lName, fName);
     }
+    cout << "Finished loading file \"" << fileName << "\"" << "\n" << flush;
+    return true;
 }
+//End of loadCustomers()
 
 
 // ------------------------------------ processCommands() ------------------------------------
@@ -80,12 +161,14 @@ void Company::loadCustomers(const string& fileName) {
 // All valid commands are executed and applied to inventory and customer history
 // All invalid commands are discarded with appropriate error messages printed
 // --------------------------------------------------------------------------------------------
-void Company::processCommands(const string& fileName) {
+bool Company::processCommands(const string& fileName) {
     ifstream file(fileName);
     if (!file) {
-        cout << "ERROR: Could not process commands, file does not exist" << "\n" << flush;
-        return;
+        cout << "ERROR: Could not process commands, file \"" << fileName << "\" does not exist" << "\n" << flush;
+        return false;
     }
+
+    cout << "\n---------- Processing commands from \"" << fileName << "\" --------\n\n";
 
     string line;
     while (getline(file, line)) {
@@ -98,6 +181,7 @@ void Company::processCommands(const string& fileName) {
         switch (command) {
 
             case 'I' :
+                cout << "\n-------------------- INVENTORY --------------------\n\n";
                 inventory.displayInventory();
                 continue;
 
@@ -109,7 +193,7 @@ void Company::processCommands(const string& fileName) {
 
                 //Added a check for invalid ID
                 if (customer == nullptr) {
-                    cout << "ERROR: Invalid Customer ID  " << ID << "\n" << flush;
+                    cout << "ERROR: Customer ID  " << ID << " not found\n" << flush;
                     continue;
                 }
 
@@ -117,7 +201,7 @@ void Company::processCommands(const string& fileName) {
 
                 customer -> displayHistory(cout);
 
-                cout << "---------------------------------------------\n";
+                cout << "---------- End of History ----------\n";
 
                 continue;
             }
@@ -138,7 +222,7 @@ void Company::processCommands(const string& fileName) {
                 Customer* customer = customers.getCustomer(ID);
                 //Added customer validation
                 if (customer == nullptr) {
-                    cout << "ERROR: Invalid Customer ID  " << ID << "\n" << flush;
+                    cout << "ERROR: Customer ID  " << ID << " not found\n" << flush;
                     continue;
                 }
 
@@ -160,12 +244,12 @@ void Company::processCommands(const string& fileName) {
                     ComedyMovie* real = inventory.findComedy(title, year);
                     //validate that real is a Movie
                     if (real == nullptr) {
-                        cout << "ERROR: ComedyMovie not found in inventory" << "\n" << flush;
+                        cout << "ERROR: " << title << " not found in inventory" << "\n" << flush;
                         continue;
                     }
                     newMovie = real -> clone();
 
-                }else if (genre == 'D') {
+                } else if (genre == 'D') {
                     string director, title;
                     getline(ss, director, ',');
                     getline(ss, title, ',');
@@ -183,12 +267,12 @@ void Company::processCommands(const string& fileName) {
                     DramaMovie* real = inventory.findDrama(director, title);
                     //validate that real is a Movie
                     if (real == nullptr) {
-                        cout << "ERROR: ComedyMovie not found in inventory" << "\n" << flush;
+                        cout << "ERROR: " << title << " not found in inventory" << "\n" << flush;
                         continue;
                     }
                     newMovie = real -> clone();
 
-                }else if (genre == 'C') {
+                } else if (genre == 'C') {
                     int month, year;
                     string firstName, lastName;
                     ss >> month >> year >> firstName >> lastName;
@@ -197,7 +281,7 @@ void Company::processCommands(const string& fileName) {
                     //find the real movie
                     ClassicMovie* real = inventory.findClassic(month, year, actor);
                     if (real == nullptr) {
-                        cout << "ERROR: ClassicMovie not found" << "\n" << flush;
+                        cout << "ERROR: Classic movie not found in inventory" << "\n" << flush;
                         continue;
                     }
                     //create a new movie
@@ -245,6 +329,8 @@ void Company::processCommands(const string& fileName) {
 
         }
     }
+    cout << "Finished processing file \"" << fileName << "\"" << "\n\n" << flush;
+    return true;
 }
 
 

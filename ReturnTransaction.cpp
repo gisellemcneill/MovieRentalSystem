@@ -8,24 +8,75 @@
 
 // --------------------------------------------------------------------------------------------------------------------
 
+// Purpose:
+// Implements the ReturnTransaction class, a derived class of the abstract Transaction class which handles
+// the behavior of a borrow command and can be stored in a customers history
+
+// ReturnTransaction functions include:
+// ReturnTransaction(), ~ReturnTransaction(), execute(), operator<<()
+
+// ReturnTransaction supports polymorphism by overriding methods from the base Transaction class
+// A ReturnTransaction can be instatiated dynamically through the TransactionFactory class, following the
+// Factory Method Pattern
+
+// --------------------------------------------------------------------------------------------------------------------
+
 #include "ReturnTransaction.h"
 #include "Company.h"
 #include "Customer.h"
 
+// ------------------------------------ ReturnTransaction Constructor ------------------------------------
+// Description:
+// Initializes a ReturnTransaction object with the given movie and customer ID, sets
+// type to 'R' for a return transaction.
+//
+// Preconditions:
+// None
+//
+// Postconditions:
+// ReturnTransaction object is initialized with provided values and type set to 'R'
+// --------------------------------------------------------------------------------------------
 ReturnTransaction::ReturnTransaction(Movie* movie, int ID) {
 	this->type = 'R';
 	this->movie = movie;
 	this->customerID = ID;
 }
+//End of ReturnTransaction Constructor
+
+
+// ------------------------------------ ReturnTransaction Copy Constructor ------------------------------------
+// Description:
+// Instantiates this ReturnTransaction as a copy of a prexisting ReturnTransaction
+//
+// Preconditions:
+// None
+//
+// Postconditions:
+// ReturnTransaction object is initialized with matching values and type set to 'R'
+// --------------------------------------------------------------------------------------------
 ReturnTransaction::ReturnTransaction(const ReturnTransaction& other) {
     this->type = 'R';
     this->movie = other.movie->clone();
     this->customerID = other.customerID;
 }
+//End of ReturnTransaction Copy Constructor
 
+
+// ------------------------------------ ReturnTransaction Destructor ------------------------------------
+// Description:
+// Destructor ensures proper cleanup and memory management of the dynamically allocated
+// Movie object in ReturnTransaction
+//
+// Preconditions:
+// none
+//
+// Postconditions:
+// The Movie memory owned by this Transaction is cleanly freed.
+// --------------------------------------------------------------------------------------------
 ReturnTransaction::~ReturnTransaction() {
 	delete movie;
 }
+//End of ReturnTransaction Destructor
 
 
 // ------------------------------------ execute() ------------------------------------
@@ -70,6 +121,19 @@ bool ReturnTransaction::execute(Company& company) {
 }
 //End of execute()
 
+
+// ------------------------------------ clone() ------------------------------------------
+// Description:
+// Creates a clone of the current ReturnTransaction, calling the copy constructor 
+// and returning the object polymorphically cast as a generic Transaction.
+//
+// Preconditions:
+// none
+//
+// Postconditions:
+// Returns a valid pointer to a BorrowTransaction object matching this
+// --------------------------------------------------------------------------------------------
 Transaction* ReturnTransaction::clone() const {
     return new ReturnTransaction(*this);
 }
+//End of clone()

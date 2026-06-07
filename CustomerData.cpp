@@ -79,7 +79,7 @@ CustomerData::~CustomerData() {
 // End of ~CustomerData()
 
 
-// ------------------------------------ addCustomer ------------------------------------
+// ------------------------------------ addCustomer() ------------------------------------
 // Description:
 // Creates a new Customer object and adds it to the hashtable if the customer does not
 // already exist by calling insert(). Automatically resizes the table if the load factor 

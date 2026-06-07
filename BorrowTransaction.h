@@ -8,6 +8,16 @@
 
 // --------------------------------------------------------------------------------------------------------------------
 
+// Purpose:
+// Defines the BorrowTransaction class, a derived class of the abstract Transaction class which handles
+// the behavior of a borrow command and can be stored in a customers history
+
+// BorrowTransaction supports polymorphism by overriding methods from the base Transaction class
+// A BorrowTransaction can be instatiated dynamically through the TransactionFactory class, following the
+// Factory Method Pattern
+
+// --------------------------------------------------------------------------------------------------------------------
+
 #ifndef BORROWTRANSACTION_H
 #define BORROWTRANSACTION_H
 

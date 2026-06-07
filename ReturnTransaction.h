@@ -8,6 +8,16 @@
 
 // --------------------------------------------------------------------------------------------------------------------
 
+// Purpose:
+// Defines the ReturnTransaction class, a derived class of the abstract Transaction class which handles
+// the behavior of a borrow command and can be stored in a customers history
+
+// ReturnTransaction supports polymorphism by overriding methods from the base Transaction class
+// A ReturnTransaction can be instatiated dynamically through the TransactionFactory class, following the
+// Factory Method Pattern
+
+// --------------------------------------------------------------------------------------------------------------------
+
 #ifndef RETURNTRANSACTION_H
 #define RETURNTRANSACTION_H
 
