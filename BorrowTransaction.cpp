@@ -8,26 +8,76 @@
 
 // --------------------------------------------------------------------------------------------------------------------
 
+// Purpose:
+// Implements the BorrowTransaction class, a derived class of the abstract Transaction class which handles
+// the behavior of a borrow command and can be stored in a customers history
+
+// BorrowTransaction functions include:
+// BorrowTransaction(), ~BorrowTransaction(), execute(), operator<<()
+
+// BorrowTransaction supports polymorphism by overriding methods from the base Transaction class
+// A BorrowTransaction can be instatiated dynamically through the TransactionFactory class, following the
+// Factory Method Pattern
+
+// --------------------------------------------------------------------------------------------------------------------
+
 #include "BorrowTransaction.h"
 #include "Company.h"
 #include "ClassicMovie.h"
 #include "Customer.h"
 
+// ------------------------------------ BorrowTransaction Constructor ------------------------------------
+// Description:
+// Initializes a BorrowTransaction object with the given movie and customer ID, sets
+// type to 'B' for a borrow transaction.
+//
+// Preconditions:
+// None
+//
+// Postconditions:
+// BorrowTransaction object is initialized with provided values and type set to 'B'
+// --------------------------------------------------------------------------------------------
 BorrowTransaction::BorrowTransaction(Movie* movie, int ID) {
 	this->type = 'B';
 	this->movie = movie;
 	this->customerID = ID;
 }
+//End of BorrowTransaction Constructor
+
+
+// ------------------------------------ BorrowTransaction Copy Constructor ------------------------------------
+// Description:
+// Instantiates this BorrowTransaction as a copy of a prexisting BorrowTransaction
+//
+// Preconditions:
+// None
+//
+// Postconditions:
+// BorrowTransaction object is initialized with matching values and type set to 'B'
+// --------------------------------------------------------------------------------------------
 BorrowTransaction::BorrowTransaction(const BorrowTransaction& other) {
     this->type = 'B';
     this->movie = other.movie->clone();
     this->customerID = other.customerID;
 }
+//End of BorrowTransaction Copy Constructor
 
+
+// ------------------------------------ BorrowTransaction Destructor ------------------------------------
+// Description:
+// Destructor ensures proper cleanup and memory management of the dynamically allocated
+// Movie object in BorrowTransaction
+//
+// Preconditions:
+// none
+//
+// Postconditions:
+// The Movie memory owned by this Transaction is cleanly freed.
+// --------------------------------------------------------------------------------------------
 BorrowTransaction::~BorrowTransaction() {
     delete movie;
 }
-
+//End of BorrowTransaction Destructor
 
 // ------------------------------------ execute() ------------------------------------------
 // Description:
@@ -82,7 +132,19 @@ bool BorrowTransaction::execute(Company& company) {
 }
 //End of execute()
 
+
+// ------------------------------------ clone() ------------------------------------------
+// Description:
+// Creates a clone of the current BorrowTransaction, calling the copy constructor 
+// and returning the object polymorphically cast as a generic Transaction.
+//
+// Preconditions:
+// none
+//
+// Postconditions:
+// Returns a valid pointer to a BorrowTransaction object matching this
+// --------------------------------------------------------------------------------------------
 Transaction* BorrowTransaction::clone() const {
     return new BorrowTransaction(*this);
 }
-
+//End of clone

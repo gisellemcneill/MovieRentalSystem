@@ -47,7 +47,7 @@ private:
     int size;
 
     //prime numbers for capacity setting
-    inline static const vector<int> primes = {
+    const vector<int> primes = {
         7, 17, 37, 79, 163, 331, 673, 1361, 2729, 5471, 10949
     };
 
